@@ -1,0 +1,16 @@
+<!-- Include flatpickr CSS and JS from CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<section id="availability">
+
+  <h2>Select Room Availability</h2>
+  <label for="room-dates">Choose Dates:</label>
+  <input type="text" id="room-dates" class="datepicker" placeholder="Select dates">
+</section>
+// Initialize flatpickr on the input field
+flatpickr("#room-dates", {
+  mode: "range",  // allows selecting a range of dates
+  dateFormat: "Y-m-d",  // format the date in YYYY-MM-DD format
+  minDate: "today",  // Prevents users from selecting past dates
+});
+
