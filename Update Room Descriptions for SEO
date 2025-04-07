@@ -1,0 +1,23 @@
+// RoomCard.jsx
+const RoomCard = ({ room }) => {
+  return (
+    <div className="p-4 shadow rounded-lg">
+      <h2 className="text-xl font-bold">{room.name}</h2>
+      <p className="text-gray-700">
+        {room.description}
+      </p>
+    </div>
+  );
+};
+
+// Example updated data
+const rooms = [
+  {
+    name: "Oceanfront Suite",
+    description: "Experience our luxury beachfront suite with stunning ocean views, elegant décor, and premium amenities.",
+  },
+  {
+    name: "Garden View Room",
+    description: "Relax in this luxury garden-view room, surrounded by tropical greenery and just steps from the beach.",
+  },
+];
