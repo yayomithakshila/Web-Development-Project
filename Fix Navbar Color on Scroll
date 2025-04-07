@@ -17,7 +17,7 @@
   padding: 15px 20px;
   background-color: transparent;  /* Initially transparent */
   transition: background-color 0.3s ease;  /* Smooth transition on scroll */
-  z-index: 1000;
+  z-index: 900;
 }
 
 .navbar.scrolled {
