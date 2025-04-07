@@ -1,0 +1,17 @@
+<section id="room-gallery">
+  <div class="room-carousel">
+    <div><img src="room1.jpg" alt="Room 1"></div>
+    <div><img src="room2.jpg" alt="Room 2"></div>
+    <div><img src="room3.jpg" alt="Room 3"></div>
+    <div><img src="room4.jpg" alt="Room 4"></div>
+  </div>
+</section>
+#room-gallery {
+  max-width: 800px;
+  margin: auto;
+}
+
+.room-carousel img {
+  width: 100%;
+  height: auto;
+}
