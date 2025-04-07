@@ -1,0 +1,99 @@
+# Routes
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+class BookingForm(FlaskForm):
+    pass
+
+@app.route('/book', methods=['GET', 'POST'])
+def book():
+    form = BookingForm()
+    message = None
+    room_types = Room.query.with_entities(Room.room_type).distinct().all()
+    room_types = [r.room_type for r in room_types]
+    available_rooms = []
+    selected_room_type = None
+
+    if request.method == 'POST':
+        action = request.form.get('action')
+
+        if action == 'check_availability':
+            selected_room_type = request.form.get('room_type')
+            available_rooms = Room.query.filter_by(room_type=selected_room_type, availability=True).all()
+
+            if not available_rooms:
+                message = "No available rooms for the selected type."
+
+            return render_template('book.html', form=form, room_types=room_types, available_rooms=available_rooms, message=message, selected_room_type=selected_room_type)
+
+        elif action == 'confirm_booking':
+            name = request.form['name']
+            email = request.form['email']
+            room_id = request.form['room_id']
+            check_in_date = request.form['check_in_date']
+            check_out_date = request.form['check_out_date']
+
+            selected_room = Room.query.get(room_id)
+            if selected_room and selected_room.availability:
+                selected_room.availability = False
+                booking = Booking(guest_name=name, guest_email=email, room_id=room_id, 
+                                  check_in_date=check_in_date, check_out_date=check_out_date)
+                db.session.add(booking)
+                db.session.commit()
+
+                # Send confirmation email to guest
+                msg_guest = Message('Booking Confirmation', sender='coralbayhoteltest@gmail.com', recipients=[email])
+                msg_guest.body = f"""
+                Dear {name},
+
+                Your reservation at Coral Bay Hotel is confirmed!
+
+                Room Type: {selected_room.room_type}
+                Room Number: {selected_room.room_number}
+                Check-In: {check_in_date}
+                Check-Out: {check_out_date}
+
+                If you are not coming please send an email to cancel the booking.
+                See you soon!
+
+                - Coral Bay Hotel
+                +94 234 567 890
+                coralbayhoteltest@gmail.com
+                123 Coral Street, Hikkaduwa, Sri Lanka
+                """
+                mail.send(msg_guest)
+
+                # Send notification email to hotel
+                msg_hotel = Message('New Booking Alert', sender='coralbayhoteltest@gmail.com', recipients=['coralbayhoteltest@gmail.com'])
+                msg_hotel.body = f"""
+                New Booking Received:
+
+                Guest Name: {name}
+                Guest Email: {email}
+                Room Type: {selected_room.room_type}
+                Room Number: {selected_room.room_number}
+                Check-In: {check_in_date}
+                Check-Out: {check_out_date}
+
+                Please prepare the room accordingly.
+
+                - Coral Bay Hotel System
+                """
+                mail.send(msg_hotel)
+
+                flash(f"Booking successful! Room {selected_room.room_number} confirmed.")
+                # Redirect to GET request to clear form data
+                return redirect(url_for('book'))
+            else:
+                message = "Room is no longer available."
+
+    return render_template('book.html', form=form, room_types=room_types, available_rooms=available_rooms, message=message, selected_room_type=selected_room_type)
