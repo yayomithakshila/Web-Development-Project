@@ -42,3 +42,16 @@ guests_entry.grid(row=4, column=1)
 tk.Button(root, text="Submit", command=submit).grid(row=5, column=0, columnspan=2)
 
 root.mainloop()
+
+
+name_entry.grid(row=0, column=1)
+email_entry.grid(row=1, column=1)
+date_entry.grid(row=2, column=1)
+time_entry.grid(row=3, column=1)
+guests_entry.grid(row=4, column=1)
+
+# Submit button
+tk.Button(root, text="Submit", command=submit).grid(row=5, column=0, columnspan=2)
+
+
+root.mainloop()
