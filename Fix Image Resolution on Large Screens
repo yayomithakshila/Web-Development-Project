@@ -1,0 +1,15 @@
+<!-- Use srcset for responsive logos -->
+<img 
+  src="images/logo@1x.png" 
+  srcset="images/logo@1x.png 1x, images/logo@2x.png 2x, images/logo@3x.png 3x" 
+  alt="Hotel Logo" 
+  class="h-12 md:h-16 lg:h-20"
+/>
+
+.logo {
+  background-image: url('images/logo@2x.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 60px;
+}
