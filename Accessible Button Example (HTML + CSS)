@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accessible Button Example</title>
+  <style>
+    .btn {
+      background-color: #004080; /* Dark blue for contrast */
+      color: #ffffff;            /* White text */
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #0059b3; /* Slightly lighter blue */
+    }
+
+    .btn:focus {
+      outline: 3px solid #ffcc00; /* Yellow focus ring */
+      outline-offset: 3px;
+    }
+
+    /* Optional: for icons inside buttons */
+    .btn i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Contact Us</h2>
+
+  <!-- Accessible button with ARIA label -->
+  <button class="btn" aria-label="Submit the contact form">
+    <i class="fa fa-paper-plane" aria-hidden="true"></i> Submit
+  </button>
+
+  <!-- Another button that is keyboard accessible -->
+  <button class="btn" aria-label="Open Chat Window">
+    <i class="fa fa-comments" aria-hidden="true"></i> Live Chat
+  </button>
+
+</body>
+</html>
