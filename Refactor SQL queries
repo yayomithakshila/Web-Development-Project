@@ -1,0 +1,15 @@
+other coding addng
+
+##changes done accordingly
+tk.Label(root, text="Info:").grid(row=0, column=0)
+tk.Label(root, text="Other:").grid(row=1, column=0)
+tk.Label(root, text="Date (YYYY-MM-DD):").grid(row=2, column=0)
+tk.Label(root, text="Time (HH:MM):").grid(row=3, column=0)
+tk.Label(root, text="Other rooms:").grid(row=4, column=0)
+
+# Other information 
+##step 2 readded the features. changes done accordingly
+tk.Label(root, text="Info:").grid(row=0, column=0)
+tk.Label(root, text="No of Guests:").grid(row=1, column=0)
+tk.Label(root, text="Date (YYYY-MM-DD):").grid(row=2, column=0)
+tk.Label(root, text="Other rooms:").grid(row=4, column=0)
