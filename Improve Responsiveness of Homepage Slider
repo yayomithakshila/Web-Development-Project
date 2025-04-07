@@ -1,0 +1,58 @@
+<section id="slider">
+  <div class="slider-container">
+    <div class="slide">
+      <img src="image1.jpg" alt="Room 1">
+    </div>
+    <div class="slide">
+      <img src="image2.jpg" alt="Room 2">
+    </div>
+    <div class="slide">
+      <img src="image3.jpg" alt="Room 3">
+    </div>
+  </div>
+</section>
+
+
+/* General slider styles */
+#slider {
+  width: 100%;
+  overflow: hidden; /* Ensures images don't spill out */
+}
+
+.slider-container {
+  display: flex; /* Arrange slides in a row */
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  width: 100%; /* Each slide takes up 100% of the container */
+  flex-shrink: 0; /* Prevent shrinking of individual slides */
+}
+
+.slide img {
+  width: 100%;
+  height: auto; /* Ensure image is responsive */
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 768px) {
+  #slider {
+    height: 300px; /* Adjust height for tablets */
+  }
+  
+  .slider-container {
+    flex-direction: column; /* Stack images vertically on small screens */
+  }
+
+  .slide {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Optional: Add more styles for mobile devices */
+@media (max-width: 480px) {
+  #slider {
+    height: 200px; /* Smaller height on mobile */
+  }
+}

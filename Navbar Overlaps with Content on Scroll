@@ -1,0 +1,57 @@
+<header class="navbar">
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="section">
+    <h1>Welcome to Our Hotel</h1>
+  </section>
+  <section id="rooms" class="section">
+    <h2>Our Rooms</h2>
+    <p>Details about rooms...</p>
+  </section>
+</main>
+/* Navbar styles */
+.navbar {
+  position: sticky;
+  top: 0; /* Keeps the navbar at the top when scrolling */
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  z-index: 10;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Add top padding to sections so navbar doesn't overlap content */
+.section {
+  padding-top: 60px; /* Adjust this value based on navbar height */
+}
+
+@media (max-width: 768px) {
+  /* If you want to adjust the layout for small screens */
+  .navbar {
+    font-size: 14px;
+  }
+}
