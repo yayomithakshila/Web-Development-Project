@@ -1,0 +1,60 @@
+class Vehicle:
+    def __init__(self, license_plate, vehicle_type):
+        self.license_plate = license_plate
+        self.vehicle_type = vehicle_type
+
+    def __str__(self):
+        return f"{self.vehicle_type} - {self.license_plate}"
+
+class ParkingLot:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.slots = [None] * capacity
+
+    def park_vehicle(self, vehicle):
+        for i in range(self.capacity):
+            if self.slots[i] is None:
+                self.slots[i] = vehicle
+                print(f"Parked {vehicle} at slot {i + 1}")
+                return
+        print("Parking Lot Full")
+
+    def remove_vehicle(self, slot_number):
+        if 1 <= slot_number <= self.capacity:
+            if self.slots[slot_number - 1]:
+                print(f"Removed {self.slots[slot_number - 1]} from slot {slot_number}")
+                self.slots[slot_number - 1] = None
+            else:
+                print("Slot is already empty")
+        else:
+            print("Invalid slot number")
+
+    def display_status(self):
+        print("\nParking Lot Status:")
+        for i, vehicle in enumerate(self.slots):
+            status = vehicle if vehicle else "Empty"
+            print(f"Slot {i + 1}: {status}")
+        print()
+
+# Example usage
+if __name__ == "__main__":
+    lot = ParkingLot(5)
+
+    while True:
+        print("\n1. Park Vehicle\n2. Remove Vehicle\n3. Show Parking Status\n4. Exit")
+        choice = input("Enter choice: ")
+
+        if choice == '1':
+            license_plate = input("Enter License Plate: ")
+            vehicle_type = input("Enter Vehicle Type (Car/Bike/etc.): ")
+            lot.park_vehicle(Vehicle(license_plate, vehicle_type))
+        elif choice == '2':
+            slot_number = int(input("Enter Slot Number to Remove Vehicle: "))
+            lot.remove_vehicle(slot_number)
+        elif choice == '3':
+            lot.display_status()
+        elif choice == '4':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
